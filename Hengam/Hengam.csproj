@@ -22,8 +22,4 @@
 		<PackageReadmeFile>README.md</PackageReadmeFile>
 	</PropertyGroup>
 
-	<ItemGroup>
-	  <Compile Include=".gitignore" />
-	</ItemGroup>
-
 </Project>
