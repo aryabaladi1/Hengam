@@ -1,4 +1,5 @@
 ﻿using Hengam.Numbers;
+using System.Globalization;
 
 namespace Hengam.Dates
 {
@@ -31,6 +32,19 @@ namespace Hengam.Dates
             return $"{PersianNumberFormatter.ToPersianDigits(day)} " +
                    $"{PersianMonthNames[month - 1]} " +
                    $"{PersianNumberFormatter.ToPersianDigits(year)}";
+        }
+
+        public static string ToPersianShortDateString(this DateTime dateTime)
+        {
+            var calendar = new PersianCalendar();
+
+            var year = calendar.GetYear(dateTime);
+            var month = calendar.GetMonth(dateTime);
+            var day = calendar.GetDayOfMonth(dateTime);
+
+            return $"{PersianNumberFormatter.ToPersianDigits(year)}/" +
+                   $"{PersianNumberFormatter.ToPersianDigits(month).PadLeft(2, '۰')}/" +
+                   $"{PersianNumberFormatter.ToPersianDigits(day).PadLeft(2, '۰')}";
         }
     }
 }
