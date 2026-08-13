@@ -21,6 +21,17 @@ namespace Hengam.Dates
             "اسفند"
         };
 
+        private static readonly string[] PersianDayNames =
+        {
+            "یکشنبه",
+            "دوشنبه",
+            "سه‌شنبه",
+            "چهارشنبه",
+            "پنجشنبه",
+            "جمعه",
+            "شنبه"
+        };
+
         public static string ToPersianDateString(this DateTime dateTime)
         {
             var persianCalendar = new System.Globalization.PersianCalendar();
@@ -45,6 +56,11 @@ namespace Hengam.Dates
             return $"{PersianNumberFormatter.ToPersianDigits(year)}/" +
                    $"{PersianNumberFormatter.ToPersianDigits(month).PadLeft(2, '۰')}/" +
                    $"{PersianNumberFormatter.ToPersianDigits(day).PadLeft(2, '۰')}";
+        }
+
+        public static string ToPersianDayOfWeekString(this DateTime dateTime)
+        {
+            return PersianDayNames[(int)dateTime.DayOfWeek];
         }
     }
 }
