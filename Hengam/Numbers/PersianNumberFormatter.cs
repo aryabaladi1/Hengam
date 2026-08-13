@@ -2,6 +2,14 @@
 {
     public static class PersianNumberFormatter
     {
+        /// <summary>
+        /// Converts the digits of an integer from Western Arabic numerals
+        /// to Persian numerals.
+        /// </summary>
+        /// <param name="number">The integer whose digits should be converted.</param>
+        /// <returns>
+        /// A string containing the number represented using Persian digits.
+        /// </returns>
         public static string ToPersianDigits(int number)
         {
             return number
