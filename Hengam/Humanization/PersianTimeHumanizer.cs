@@ -4,6 +4,15 @@ namespace Hengam.Humanization
 {
     public static class PersianTimeHumanizer
     {
+        /// <summary>
+        /// Converts a date and time into a human-readable Persian relative-time string,
+        /// such as "همین الان", "۳ ساعت پیش", or "۲ روز دیگر".
+        /// </summary>
+        /// <param name="dateTime">The date and time to humanize.</param>
+        /// <param name="referenceTime">
+        /// The date and time to compare against. If omitted, the current local time is used.
+        /// </param>
+        /// <returns>A Persian string describing how far the specified date and time is from the reference time.</returns>
         public static string Humanize(DateTime dateTime, DateTime? referenceTime = null)
         {
             var now = referenceTime ?? DateTime.Now;
