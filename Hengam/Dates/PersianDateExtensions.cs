@@ -32,6 +32,12 @@ namespace Hengam.Dates
             "شنبه"
         };
 
+        /// <summary>
+        /// Converts a Gregorian date to a Persian (Jalali) date in a human-readable format,
+        /// such as "۲۲ مرداد ۱۴۰۵".
+        /// </summary>
+        /// <param name="dateTime">The Gregorian date and time to convert.</param>
+        /// <returns>A formatted Persian date containing the day, month name, and year.</returns>
         public static string ToPersianDateString(this DateTime dateTime)
         {
             var persianCalendar = new System.Globalization.PersianCalendar();
@@ -45,6 +51,12 @@ namespace Hengam.Dates
                    $"{PersianNumberFormatter.ToPersianDigits(year)}";
         }
 
+        /// <summary>
+        /// Converts a Gregorian date to a Persian (Jalali) date in a numeric format,
+        /// such as "۱۴۰۵/۰۵/۲۲".
+        /// </summary>
+        /// <param name="dateTime">The Gregorian date and time to convert.</param>
+        /// <returns>A formatted Persian date using the year/month/day format.</returns>
         public static string ToPersianShortDateString(this DateTime dateTime)
         {
             var calendar = new PersianCalendar();
@@ -58,6 +70,11 @@ namespace Hengam.Dates
                    $"{PersianNumberFormatter.ToPersianDigits(day).PadLeft(2, '۰')}";
         }
 
+        /// <summary>
+        /// Gets the Persian name of the day of the week for the specified date.
+        /// </summary>
+        /// <param name="dateTime">The date and time whose day of the week should be retrieved.</param>
+        /// <returns>The Persian name of the corresponding day of the week.</returns>
         public static string ToPersianDayOfWeekString(this DateTime dateTime)
         {
             return PersianDayNames[(int)dateTime.DayOfWeek];
