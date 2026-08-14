@@ -1,4 +1,4 @@
-\# Hengam
+# Hengam
 
 
 
@@ -10,19 +10,19 @@ Hengam provides simple utilities for working with Persian (Jalali) dates, Persia
 
 
 
-\## Features
+## Features
 
 
 
-\- Persian (Jalali) date formatting
+- Persian (Jalali) date formatting
 
-\- Persian month and day names
+- Persian month and day names
 
-\- Persian date and time formatting
+- Persian date and time formatting
 
-\- Persian digit conversion
+- Persian digit conversion
 
-\- Human-readable Persian relative time
+- Human-readable Persian relative time
 
 
 
