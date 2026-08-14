@@ -5,6 +5,8 @@ namespace Hengam.Dates
 {
     public static class PersianDateExtensions
     {
+        private static readonly PersianCalendar PersianCalendar = new PersianCalendar();
+
         private static readonly string[] PersianMonthNames =
         {
             "فروردین",
@@ -40,11 +42,9 @@ namespace Hengam.Dates
         /// <returns>A formatted Persian date containing the day, month name, and year.</returns>
         public static string ToPersianDateString(this DateTime dateTime)
         {
-            var persianCalendar = new System.Globalization.PersianCalendar();
-
-            var year = persianCalendar.GetYear(dateTime);
-            var month = persianCalendar.GetMonth(dateTime);
-            var day = persianCalendar.GetDayOfMonth(dateTime);
+            var year = PersianCalendar.GetYear(dateTime);
+            var month = PersianCalendar.GetMonth(dateTime);
+            var day = PersianCalendar.GetDayOfMonth(dateTime);
 
             return $"{PersianNumberFormatter.ToPersianDigits(day)} " +
                    $"{PersianMonthNames[month - 1]} " +
@@ -52,18 +52,16 @@ namespace Hengam.Dates
         }
 
         /// <summary>
-        /// Converts a Gregorian date to a Persian (Jalali) date in a numeric format,
+        /// Converts a Gregorian date to a Persian (Jalali) date in numeric format,
         /// such as "۱۴۰۵/۰۵/۲۲".
         /// </summary>
         /// <param name="dateTime">The Gregorian date and time to convert.</param>
         /// <returns>A formatted Persian date using the year/month/day format.</returns>
         public static string ToPersianShortDateString(this DateTime dateTime)
         {
-            var calendar = new PersianCalendar();
-
-            var year = calendar.GetYear(dateTime);
-            var month = calendar.GetMonth(dateTime);
-            var day = calendar.GetDayOfMonth(dateTime);
+            var year = PersianCalendar.GetYear(dateTime);
+            var month = PersianCalendar.GetMonth(dateTime);
+            var day = PersianCalendar.GetDayOfMonth(dateTime);
 
             return $"{PersianNumberFormatter.ToPersianDigits(year)}/" +
                    $"{PersianNumberFormatter.ToPersianDigits(month).PadLeft(2, '۰')}/" +
@@ -78,6 +76,68 @@ namespace Hengam.Dates
         public static string ToPersianDayOfWeekString(this DateTime dateTime)
         {
             return PersianDayNames[(int)dateTime.DayOfWeek];
+        }
+
+        /// <summary>
+        /// Gets the Persian (Jalali) year of the specified Gregorian date.
+        /// </summary>
+        /// <param name="dateTime">The Gregorian date and time.</param>
+        /// <returns>The Persian year represented using Persian digits.</returns>
+        public static string ToPersianYear(this DateTime dateTime)
+        {
+            var year = PersianCalendar.GetYear(dateTime);
+
+            return PersianNumberFormatter.ToPersianDigits(year);
+        }
+
+        /// <summary>
+        /// Gets the Persian month name of the specified Gregorian date.
+        /// </summary>
+        /// <param name="dateTime">The Gregorian date and time.</param>
+        /// <returns>The Persian name of the corresponding month.</returns>
+        public static string ToPersianMonthString(this DateTime dateTime)
+        {
+            var month = PersianCalendar.GetMonth(dateTime);
+
+            return PersianMonthNames[month - 1];
+        }
+
+        /// <summary>
+        /// Gets the day of the Persian (Jalali) month for the specified Gregorian date.
+        /// </summary>
+        /// <param name="dateTime">The Gregorian date and time.</param>
+        /// <returns>The day of the Persian month represented using Persian digits.</returns>
+        public static string ToPersianDay(this DateTime dateTime)
+        {
+            var day = PersianCalendar.GetDayOfMonth(dateTime);
+
+            return PersianNumberFormatter.ToPersianDigits(day);
+        }
+
+        /// <summary>
+        /// Converts a Gregorian date and time to a human-readable Persian date and time,
+        /// such as "۲۲ مرداد ۱۴۰۵، ۱۴:۳۰".
+        /// </summary>
+        /// <param name="dateTime">The Gregorian date and time to convert.</param>
+        /// <returns>A formatted Persian date and time.</returns>
+        public static string ToPersianDateTimeString(this DateTime dateTime)
+        {
+            var year = PersianCalendar.GetYear(dateTime);
+            var month = PersianCalendar.GetMonth(dateTime);
+            var day = PersianCalendar.GetDayOfMonth(dateTime);
+
+            var hour = PersianNumberFormatter
+                .ToPersianDigits(dateTime.Hour)
+                .PadLeft(2, '۰');
+
+            var minute = PersianNumberFormatter
+                .ToPersianDigits(dateTime.Minute)
+                .PadLeft(2, '۰');
+
+            return $"{PersianNumberFormatter.ToPersianDigits(day)} " +
+                   $"{PersianMonthNames[month - 1]} " +
+                   $"{PersianNumberFormatter.ToPersianDigits(year)}، " +
+                   $"{hour}:{minute}";
         }
     }
 }
