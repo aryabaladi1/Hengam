@@ -103,6 +103,18 @@ namespace Hengam.Dates
         }
 
         /// <summary>
+        /// Gets the numeric Persian (Jalali) month of the specified Gregorian date.
+        /// </summary>
+        /// <param name="dateTime">The Gregorian date and time.</param>
+        /// <returns>The Persian month represented using Persian digits.</returns>
+        public static string ToPersianMonth(this DateTime dateTime)
+        {
+            var month = PersianCalendar.GetMonth(dateTime);
+
+            return PersianNumberFormatter.ToPersianDigits(month);
+        }
+
+        /// <summary>
         /// Gets the day of the Persian (Jalali) month for the specified Gregorian date.
         /// </summary>
         /// <param name="dateTime">The Gregorian date and time.</param>
