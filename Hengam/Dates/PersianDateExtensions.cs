@@ -151,5 +151,32 @@ namespace Hengam.Dates
                    $"{PersianNumberFormatter.ToPersianDigits(year)}، " +
                    $"{hour}:{minute}";
         }
+
+        /// <summary>
+        /// Converts a Gregorian date and time to a short Persian date and time format,
+        /// such as "۱۴۰۵/۰۵/۲۲ ۱۴:۳۰".
+        /// </summary>
+        /// <param name="dateTime">The Gregorian date and time to convert.</param>
+        /// <returns>A formatted Persian date and time using numeric date components.</returns>
+        public static string ToPersianDateTimeShortString(this DateTime dateTime)
+        {
+            var year = PersianCalendar.GetYear(dateTime);
+            var month = PersianCalendar.GetMonth(dateTime);
+            var day = PersianCalendar.GetDayOfMonth(dateTime);
+
+            var date = $"{PersianNumberFormatter.ToPersianDigits(year)}/" +
+                       $"{PersianNumberFormatter.ToPersianDigits(month).PadLeft(2, '۰')}/" +
+                       $"{PersianNumberFormatter.ToPersianDigits(day).PadLeft(2, '۰')}";
+
+            var hour = PersianNumberFormatter
+                .ToPersianDigits(dateTime.Hour)
+                .PadLeft(2, '۰');
+
+            var minute = PersianNumberFormatter
+                .ToPersianDigits(dateTime.Minute)
+                .PadLeft(2, '۰');
+
+            return $"{date} {hour}:{minute}";
+        }
     }
 }
