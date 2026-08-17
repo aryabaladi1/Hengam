@@ -178,5 +178,17 @@ namespace Hengam.Dates
 
             return $"{date} {hour}:{minute}";
         }
+
+        /// <summary>
+        /// Determines whether the Persian (Jalali) year containing the specified date is a leap year.
+        /// </summary>
+        /// <param name="dateTime">The Gregorian date and time used to determine the Persian year.</param>
+        /// <returns><c>true</c> if the corresponding Persian year is a leap year; otherwise, <c>false</c>.</returns>
+        public static bool IsPersianLeapYear(this DateTime dateTime)
+        {
+            var year = PersianCalendar.GetYear(dateTime);
+
+            return PersianCalendar.IsLeapYear(year);
+        }
     }
 }
