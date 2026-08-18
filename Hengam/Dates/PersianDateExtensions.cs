@@ -190,5 +190,18 @@ namespace Hengam.Dates
 
             return PersianCalendar.IsLeapYear(year);
         }
+
+        /// <summary>
+        /// Gets the number of days in the Persian (Jalali) month containing the specified date.
+        /// </summary>
+        /// <param name="dateTime">The Gregorian date and time used to determine the Persian month.</param>
+        /// <returns>The number of days in the corresponding Persian month.</returns>
+        public static int GetDaysInPersianMonth(this DateTime dateTime)
+        {
+            var year = PersianCalendar.GetYear(dateTime);
+            var month = PersianCalendar.GetMonth(dateTime);
+
+            return PersianCalendar.GetDaysInMonth(year, month);
+        }
     }
 }
