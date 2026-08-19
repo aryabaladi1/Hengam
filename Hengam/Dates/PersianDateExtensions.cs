@@ -203,5 +203,15 @@ namespace Hengam.Dates
 
             return PersianCalendar.GetDaysInMonth(year, month);
         }
+
+        /// <summary>
+        /// Determines whether the specified date falls on the Persian weekend (Friday).
+        /// </summary>
+        /// <param name="dateTime">The date and time to check.</param>
+        /// <returns><c>true</c> if the date is Friday; otherwise, <c>false</c>.</returns>
+        public static bool IsPersianWeekend(this DateTime dateTime)
+        {
+            return dateTime.DayOfWeek == DayOfWeek.Friday;
+        }
     }
 }
