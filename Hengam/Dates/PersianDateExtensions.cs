@@ -213,5 +213,17 @@ namespace Hengam.Dates
         {
             return dateTime.DayOfWeek == DayOfWeek.Friday;
         }
+
+        /// <summary>
+        /// Gets the day number within the Persian year for the specified date.
+        /// </summary>
+        /// <param name="dateTime">The Gregorian date and time.</param>
+        /// <returns>
+        /// The day of the corresponding Persian year, starting from 1.
+        /// </returns>
+        public static int GetPersianDayOfYear(this DateTime dateTime)
+        {
+            return PersianCalendar.GetDayOfYear(dateTime);
+        }
     }
 }
